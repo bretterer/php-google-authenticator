@@ -8,7 +8,11 @@
                     <div class="panel-heading">Google Authenticator</div>
 
                     <div class="panel-body">
-                        You are logged in!
+                        @if(auth()->user()->enrolled)
+                            Enrolled into Google Authenticator
+                        @else
+                            <a href="/profile/enroll" class="btn btn-primary">Enroll into Google Authenticator</a>
+                        @endif
                     </div>
                 </div>
             </div>

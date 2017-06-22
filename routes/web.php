@@ -19,4 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile', 'ProfileController@index')->name('profile')->middleware('auth');
+
+Route::get('/profile/enroll', 'ProfileController@enroll')->name('profile.enroll')->middleware('auth');
+Route::post('/profile/enroll', 'ProfileController@enrollVerify')->name('profile.enroll.verify')->middleware('auth');
+
+Route::get('/login/challenge', 'Auth\LoginController@challenge');
+Route::post('/login/challenge', ['uses'=>'Auth\LoginController@validateChallenge', 'as' => 'login.challenge']);
